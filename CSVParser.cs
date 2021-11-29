@@ -39,7 +39,7 @@ public class CSVParser
 
 		// " this " ,"is", " also " ignored text,,, more ignored text "valid to embed a \\backslash","or" "a" "\n",
 		string line3 = @""" this "" ,""is"", "" also "" ignored text,,, more ignored text ""valid to embed a \\backslash"",""or"" ""a"" ""\n"",";
-		string[] output3 = new string[] { " this ", "is", "also", "", "", "valid to embed a \\backslash", "or", "a", "\n", "" };
+		string[] output3 = new string[] { " this ", "is", "also", "", "", "valid to embed a \\backslash", "ora\n", "" };
 		CheckEqual(output3, Parse(line3, ',', '"'));
 
 		// 'this'x \\\'is' x '"'x 'extreme!'
