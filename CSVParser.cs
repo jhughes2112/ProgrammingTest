@@ -38,10 +38,10 @@ public class CSVParser
 		CheckEqual(correctOutput2, parsedOutput2);
 
 		string[] parsedOutput3 = Parse(csvLines[2], ',', '"');
-		string[] correctOutput3 = new string[] { " this ", "is", "also", "", "", "valid to embed a \\backslash", "ora\n", "" };
+		string[] correctOutput3 = new string[] { " this ", "is", " also ", "", "", "valid to embed a \\backslash", "ora\n", "" };
 		CheckEqual(correctOutput3, parsedOutput3);
 
-		string[] parsedOutput4 = Parse(csvLines[2], 'x', '\'');
+		string[] parsedOutput4 = Parse(csvLines[3], 'x', '\'');
 		string[] correctOutput4 = new string[] { "this", "is", "\"", "extreme!" };
 		CheckEqual(correctOutput4, parsedOutput4);
 
