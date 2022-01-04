@@ -1,0 +1,4 @@
+﻿"simple","input","line"
+"this," ,"is", "a",,,"valid\t" " ","input with unclosed quotes
+" this " ,"is", " also " ignored text,,, more ignored text "valid to embed a \\backslash","or" "a" "\n",
+'this'x \\\'is' x '"'x 'extreme!'

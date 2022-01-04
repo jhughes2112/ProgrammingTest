@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="CSVParser.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="sometext.csv" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />

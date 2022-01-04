@@ -1,3 +1,4 @@
+using System.IO;
 using System.Diagnostics;
 
 //-------------------
@@ -27,25 +28,22 @@ public class CSVParser
 
 	public static int Main()
 	{
-		// "simple","input","line"
-		string line1 = @"""simple"",""input"",""line""";
-		string[] output1 = new string[] { "simple", "input", "line" };
-		CheckEqual(output1, Parse(line1, ',', '"'));
+		string[] csvLines = File.ReadAllLines("../../sometext.csv");
+		string[] parsedOutput1 = Parse(csvLines[0], ',', '"');
+		string[] correctOutput1 = new string[] { "simple", "input", "line" };
+		CheckEqual(correctOutput1, parsedOutput1);
 		
-		// "this," ,"is", "a",,,"valid\t" " ","input with unclosed quotes
-		string line2 = @"""this,"" ,""is"", ""a"",,,""valid\t"" "" "",""input with unclosed quotes";
-		string[] output2 = new string[] { "this,", "is", "a", "", "", "valid\t ", "input with unclosed quotes" };
-		CheckEqual(output2, Parse(line2, ',', '"'));
+		string[] parsedOutput2 = Parse(csvLines[1], ',', '"');
+		string[] correctOutput2 = new string[] { "this,", "is", "a", "", "", "valid\t ", "input with unclosed quotes" };
+		CheckEqual(correctOutput2, parsedOutput2);
 
-		// " this " ,"is", " also " ignored text,,, more ignored text "valid to embed a \\backslash","or" "a" "\n",
-		string line3 = @""" this "" ,""is"", "" also "" ignored text,,, more ignored text ""valid to embed a \\backslash"",""or"" ""a"" ""\n"",";
-		string[] output3 = new string[] { " this ", "is", "also", "", "", "valid to embed a \\backslash", "ora\n", "" };
-		CheckEqual(output3, Parse(line3, ',', '"'));
+		string[] parsedOutput3 = Parse(csvLines[2], ',', '"');
+		string[] correctOutput3 = new string[] { " this ", "is", "also", "", "", "valid to embed a \\backslash", "ora\n", "" };
+		CheckEqual(correctOutput3, parsedOutput3);
 
-		// 'this'x \\\'is' x '"'x 'extreme!'
-		string line4 = @"'this'x \\\'is' x '""'x 'extreme!' ";
-		string[] output4 = new string[] { "this", "is", "\"", "extreme!" };
-		CheckEqual(output4, Parse(line4, 'x', '\''));
+		string[] parsedOutput4 = Parse(csvLines[2], 'x', '\'');
+		string[] correctOutput4 = new string[] { "this", "is", "\"", "extreme!" };
+		CheckEqual(correctOutput4, parsedOutput4);
 
 		return 0;
 	}
